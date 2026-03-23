@@ -57,12 +57,32 @@ This skill is activated in one of two ways:
 
 Where `<autogen-name>` is a short, descriptive slug auto-generated from the session content (e.g., `add-retry-logic`, `fix-auth-redirect`).
 
-2.4. The file **MUST** begin with the following header (expand `<active_topic>` to its actual value, but keep `<PROJECT_ROOT>` as-is — do NOT replace it with the actual path):
+2.4. The file **MUST** begin with the following header. In the template below, expand `<active_topic>` to its actual value, but keep `<PROJECT_ROOT>` as a literal string — do NOT replace it with the actual filesystem path.
+
+Template:
 
 ```markdown
 > This file is a historical session archive and may contain outdated information.
 > For authoritative conclusions, refer to `<PROJECT_ROOT>/topics/<active_topic>/MEMORY.md`.
 ```
+
+Example — if `active_topic` is `user-authentication`:
+
+- **Correct**:
+  ```
+  > This file is a historical session archive and may contain outdated information.
+  > For authoritative conclusions, refer to `<PROJECT_ROOT>/topics/user-authentication/MEMORY.md`.
+  ```
+- **Wrong** (replaced `<PROJECT_ROOT>` with actual path):
+  ```
+  > This file is a historical session archive and may contain outdated information.
+  > For authoritative conclusions, refer to `/home/alice/projects/acme-web/topics/user-authentication/MEMORY.md`.
+  ```
+- **Wrong** (used the new topic instead of the current `active_topic` during an automatic save triggered by `topic-open search-optimization`):
+  ```
+  > This file is a historical session archive and may contain outdated information.
+  > For authoritative conclusions, refer to `<PROJECT_ROOT>/topics/search-optimization/MEMORY.md`.
+  ```
 
 2.5. Only retain session background and information that may be valuable for future reference.
 
